@@ -14,6 +14,7 @@ app.Use(async (HttpContext context, RequestDelegate next) => {
 
 //Run MyMiddlewareClass
 app.UseMiddleware<MyMiddlewareClass>();
+app.UseMyCustomMiddleware();
 
 //Middleware 2
 app.Use(async (HttpContext context, RequestDelegate next) => {

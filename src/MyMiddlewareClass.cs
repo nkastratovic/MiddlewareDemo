@@ -8,3 +8,12 @@ public class MyMiddlewareClass : IMiddleware
         await context.Response.WriteAsync("MyMiddlewareClass Response\n");
     }
 }
+
+public static class CustomMiddlewareExtension
+{
+    //Extension method - method injected into an existing object dynamically.
+    public static IApplicationBuilder UseMyCustomMiddleware(this IApplicationBuilder app)
+    {
+        return app.UseMiddleware<MyMiddlewareClass>();
+    }
+}
