@@ -1,4 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
+
+//Register MyMiddlewareClass as a service
+builder.Services.AddSingleton<MyMiddlewareClass>();
+
 var app = builder.Build();
 
 //Middleware 1
@@ -7,6 +11,9 @@ app.Use(async (HttpContext context, RequestDelegate next) => {
     await next(context);
     await context.Response.WriteAsync("Middleware 1 Response\n");
 });
+
+//Run MyMiddlewareClass
+app.UseMiddleware<MyMiddlewareClass>();
 
 //Middleware 2
 app.Use(async (HttpContext context, RequestDelegate next) => {
